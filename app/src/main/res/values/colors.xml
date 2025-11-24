@@ -5,4 +5,5 @@
     <color name="md_theme_onBackground">#1C1B1F</color>
     <color name="md_theme_surface">#FFFFFF</color>
     <color name="md_theme_onSurface">#1C1B1F</color>
+    <color name="md_theme_onSurfaceVariant">#49454F</color>
 </resources>
