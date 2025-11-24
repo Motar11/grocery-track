@@ -1,5 +1,6 @@
 package com.example.grocerytrack
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         setupRecyclerView()
         setupInput()
+        setupPriceNavigation()
     }
 
     /**
@@ -70,5 +72,14 @@ class MainActivity : AppCompatActivity() {
         adapter.addItem(GroceryItem(name))
         binding.itemEditText.text?.clear()
         binding.groceryRecyclerView.scrollToPosition(0)
+    }
+
+    /**
+     * Navigate to the price-per-unit screen to log costs for groceries.
+     */
+    private fun setupPriceNavigation() {
+        binding.recordPriceButton.setOnClickListener {
+            startActivity(Intent(this, PriceActivity::class.java))
+        }
     }
 }
