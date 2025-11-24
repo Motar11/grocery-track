@@ -19,7 +19,9 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled false
+            // Disable code shrinking/obfuscation for the release build; use
+            // the Gradle DSL property name without the `is` prefix.
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
