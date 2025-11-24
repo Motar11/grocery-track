@@ -3,7 +3,10 @@ package com.example.grocerytrack
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grocerytrack.databinding.ActivityMainBinding
 
@@ -14,8 +17,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applySystemInsets()
 
         setupRecyclerView()
         setupInput()
@@ -27,6 +32,23 @@ class MainActivity : AppCompatActivity() {
         }
         binding.groceryRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.groceryRecyclerView.adapter = adapter
+    }
+
+    private fun applySystemInsets() {
+        val initialPadding = binding.root.run {
+            listOf(paddingLeft, paddingTop, paddingRight, paddingBottom)
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                initialPadding[0] + insets.left,
+                initialPadding[1] + insets.top,
+                initialPadding[2] + insets.right,
+                initialPadding[3] + insets.bottom
+            )
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun setupInput() {
