@@ -7,16 +7,6 @@
     <string name="input_price_of_items">Input Price of Items</string>
 
     <string name="add">Add</string>
-    <string name="save_list">Save List</string>
-    <string name="list_name_hint">Name your list (e.g. Saturday Groceries)</string>
-    <string name="add_item_hint">Add grocery item</string>
-    <string name="list_not_found">List not found</string>
-
-    <string name="no_saved_lists">No saved lists yet. Create one to get started.</string>
-    <string name="item_count_format">%1$d items</string>
-    <string name="list_name_placeholder">List name</string>
-    <string name="item_count_placeholder">0 items</string>
-
     <string name="record_price">Record price per unit</string>
     <string name="price_screen_title">Price per unit</string>
     <string name="hint_price_item_name">Item to price</string>

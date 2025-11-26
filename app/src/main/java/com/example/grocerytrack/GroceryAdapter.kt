@@ -25,15 +25,6 @@ class GroceryAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    fun isEmpty(): Boolean = items.isEmpty()
-
-    fun getItems(): List<GroceryItem> = items.toList()
-
-    fun clear() {
-        items.clear()
-        notifyDataSetChanged()
-    }
-
     /**
      * Add an item at the top of the list and notify the adapter.
      */
