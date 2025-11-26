@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroceryTrack">
         <activity
+            android:name=".ListDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StartShoppingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GroceryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PriceActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
