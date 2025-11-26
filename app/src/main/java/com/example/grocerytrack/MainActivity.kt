@@ -2,10 +2,7 @@ package com.example.grocerytrack
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grocerytrack.databinding.ActivityMainBinding
 
 /**
@@ -50,15 +47,9 @@ class MainActivity : AppCompatActivity() {
             addItem()
         }
 
-        binding.itemEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                addItem()
-                true
-            } else {
-                false
-            }
+        binding.startListButton.setOnClickListener {
+            startActivity(Intent(this, StartShoppingActivity::class.java))
         }
-    }
 
     /**
      * Read the text, validate it, add it to the list, and clear the input.
@@ -69,9 +60,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Please enter an item", Toast.LENGTH_SHORT).show()
             return
         }
-        adapter.addItem(GroceryItem(name))
-        binding.itemEditText.text?.clear()
-        binding.groceryRecyclerView.scrollToPosition(0)
     }
 
     /**
