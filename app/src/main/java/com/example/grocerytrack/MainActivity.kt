@@ -1,57 +1,40 @@
 package com.example.grocerytrack
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grocerytrack.databinding.ActivityMainBinding
 
+/**
+ * Landing screen that presents navigation to the three core flows: creating a list,
+ * starting a saved list, and recording price-per-unit information.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: GroceryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRecyclerView()
-        setupInput()
+        setupNavigation()
     }
 
-    private fun setupRecyclerView() {
-        adapter = GroceryAdapter(mutableListOf()) { removedItem ->
-            Toast.makeText(this, "Removed: ${removedItem.name}", Toast.LENGTH_SHORT).show()
-        }
-        binding.groceryRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.groceryRecyclerView.adapter = adapter
-    }
-
-    private fun setupInput() {
-        binding.addButton.setOnClickListener {
-            addItem()
+    /**
+     * Wire up the menu buttons to launch their respective screens.
+     */
+    private fun setupNavigation() {
+        binding.createListButton.setOnClickListener {
+            startActivity(Intent(this, GroceryListActivity::class.java))
         }
 
-        binding.itemEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                addItem()
-                true
-            } else {
-                false
-            }
+        binding.startListButton.setOnClickListener {
+            startActivity(Intent(this, StartShoppingActivity::class.java))
         }
-    }
 
-    private fun addItem() {
-        val name = binding.itemEditText.text?.toString()?.trim().orEmpty()
-        if (name.isEmpty()) {
-            Toast.makeText(this, "Please enter an item", Toast.LENGTH_SHORT).show()
-            return
+        binding.priceButton.setOnClickListener {
+            startActivity(Intent(this, PriceActivity::class.java))
         }
-        adapter.addItem(GroceryItem(name))
-        binding.itemEditText.text?.clear()
-        binding.groceryRecyclerView.scrollToPosition(0)
     }
 }
